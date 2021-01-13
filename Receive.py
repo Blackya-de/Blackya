@@ -13,7 +13,7 @@ def Receive(window,e):
     info = Label(window,text="Waiting the send of file",width=30,fg="white",bg="black").place(x=790,y=120)
     c, addr =s.accept()
     data = c.recv(1024)
-    filesize = long(data)
+    filesize = len(data)
     if not filename:
         print("please insert a filename")
     else:
@@ -26,7 +26,7 @@ def Receive(window,e):
             totalReceive += len(data)
             f.write(data)
         #complet = Label(window,text="Download Complet")
-        c.send("Downlaod completed")
+        c.send(b'Downlaod completed')
         print("Download has complete")
         completed = Label(window,text="Download has complete",fg="white",bg="black",width=35).place(x=785,y=210)
     s.close()
